@@ -1,4 +1,4 @@
-public class NumberCheck {
+public class numbercheck {
 
     public static void main(String[] args) {
         int number = 10;
