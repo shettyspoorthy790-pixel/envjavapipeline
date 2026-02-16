@@ -19,7 +19,11 @@ pipeline {
 
         stage('Compile') {
             steps {
-                sh 'javac NumberCheck.java'
+                sh '''
+                echo "Files in workspace:"
+                ls -l
+                javac NumberCheck.java
+                '''
             }
         }
 
@@ -28,8 +32,10 @@ pipeline {
                 expression { params.ENV == 'dev' }
             }
             steps {
-                echo 'Running in DEV environment'
-                sh 'java NumberCheck'
+                sh '''
+                echo "Running in DEV environment"
+                java NumberCheck
+                '''
             }
         }
 
@@ -38,8 +44,10 @@ pipeline {
                 expression { params.ENV == 'prod' }
             }
             steps {
-                echo 'Running in PROD environment'
-                sh 'java NumberCheck'
+                sh '''
+                echo "Running in PROD environment"
+                java NumberCheck
+                '''
             }
         }
     }
